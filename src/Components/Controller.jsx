@@ -28,8 +28,8 @@ const Controller = ({ position, setPosition }) => {
   return (
     <div className='frost-black w-screen'>
       {/* Flight Control */}
-      <section>
-        <div className='bg-black'>
+      <section >
+        <div>
           <h1 className='text-white my-2 mx-6 text-xl font-bold'>Flight Control</h1>
           <div className='text-black bg-white flex justify-center space-x-4 rounded mx-6 h-10 my-3'>
             <button className='hover:bg-blue-500 hover:rounded w-full '>Manual</button>

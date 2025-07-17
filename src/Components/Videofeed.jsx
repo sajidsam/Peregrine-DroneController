@@ -1,4 +1,3 @@
-// Videofeed.jsx
 import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 
@@ -15,19 +14,67 @@ const MiniMapRecenter = ({ position }) => {
 const Videofeed = ({ position }) => {
   return (
     <div>
-      <div className="bg-black border-2 border-red-600 w-[65vw] h-[584px] relative">
-        {/* Centered Title */}
-        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl">
+      <div className="bg-black border-2 border-red-600 w-[65vw] h-[584px] relative overflow-hidden">
+
+        {/* 3x3 Grid Lines */}
+        {/* Vertical lines */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: '33.33%',
+            width: '2px',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            zIndex: 0,
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: '66.66%',
+            width: '2px',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            zIndex: 0,
+          }}
+        />
+
+        {/* Horizontal lines */}
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: '33.33%',
+            height: '2px',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            zIndex: 0,
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: '66.66%',
+            height: '2px',
+            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+            zIndex: 0,
+          }}
+        />
+
+        <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-2xl z-10">
           Rocket Video Feed
         </h1>
 
-        {/* Bottom-Left Status */}
-        <h1 className="absolute bottom-2 left-2 text-white text-sm">
+        <h1 className="absolute bottom-2 left-2 text-white text-sm z-10">
           Not Live 00:00:00
         </h1>
 
         {/* GPS Mini Map */}
-        <div className="absolute bottom-2 right-2 w-48 h-32 bg-white rounded-md overflow-hidden shadow-md border border-white">
+        <div className="absolute bottom-2 right-2 w-48 h-32 bg-white rounded-md overflow-hidden shadow-md border border-white z-10">
           <MapContainer
             center={position}
             zoom={100}
@@ -40,7 +87,7 @@ const Videofeed = ({ position }) => {
             style={{ height: '100%', width: '100%' }}
           >
             <TileLayer
-              attribution='&copy; OpenStreetMap contributors'
+              attribution="&copy; OpenStreetMap contributors"
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <Marker position={position} />

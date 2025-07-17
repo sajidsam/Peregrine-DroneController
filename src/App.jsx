@@ -1,4 +1,3 @@
-// App.jsx (minimal context-free approach)
 import { useState } from 'react';
 import Navbar from './Components/Navbar';
 import Sidebar from './Components/Sidebar';
