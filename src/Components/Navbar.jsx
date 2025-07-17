@@ -14,22 +14,24 @@ const topStats = [
   { icon: faTachometerAlt, value: '12.6', unit: 'm/s' },
   { icon: faArrowRightArrowLeft, value: '5.2', unit: 'm/s' },
   { icon: faBatteryThreeQuarters, value: '98%', unit: '' },
-  { icon: faSignal, value: '98%', unit: '' },
-  { icon: faSatellite, value: '14', unit: 'SAT' },
+  { icon: faSignal, value: 'Strong', unit: '' },
+  { icon: faSatellite, value: '17', unit: 'THR' },
 ];
 
 const Navbar = () => {
   return (
-
-    <div className="w-full h-12 bg-gray-900 flex items-center justify-between px-40  text-white text-sm shadow">
+    <>
+     <div className=" h-12 frost-black flex items-center justify-between pl-24 pr-120 text-white text-sm shadow">
       {topStats.map((stat, index) => (
-        <div key={index} className="flex items-center space-x-1 ">
+        <div key={index} className=" space-x-1 ">
           <FontAwesomeIcon icon={stat.icon} className="text-blue-400" />
           <span className="font-medium">{stat.value}</span>
           {stat.unit && <span className="text-gray-400">{stat.unit}</span>}
         </div>
       ))}
     </div>
+    </>
+   
   );
 };
 
