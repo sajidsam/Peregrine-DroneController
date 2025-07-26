@@ -58,6 +58,7 @@ const Navbar = () => {
           <FontAwesomeIcon icon={stat.icon} className="text-blue-400" />
           <span className="font-medium">{stat.value}</span>
           {stat.unit && <span className="text-gray-400">{stat.unit}</span>}
+          
         </div>
       ))}
     </div>
