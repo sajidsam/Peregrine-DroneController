@@ -1,5 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
+import L from 'leaflet';
+import markerIcon from '../assets/marker-icon.png';
+import markerShadow from '../assets/marker-shadow.png';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({ 
+  iconUrl: markerIcon,
+  shadowUrl: markerShadow,
+});
 
 const MiniMapRecenter = ({ position }) => {
   const map = useMap();
@@ -11,7 +21,30 @@ const MiniMapRecenter = ({ position }) => {
   return null;
 };
 
-const Videofeed = ({ position }) => {
+const Videofeed = ({ position: propPosition }) => {
+  const [position, setPosition] = useState(propPosition || [0, 0]);
+
+  useEffect(() => {
+    if (!propPosition) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const coords = [pos.coords.latitude, pos.coords.longitude];
+            setPosition(coords);
+          },
+          (err) => {
+            console.error('Error getting position:', err);
+          
+          }
+        );
+      } else {
+        console.error('Geolocation is not supported by this browser.');
+      }
+    } else {
+      setPosition(propPosition);
+    }
+  }, [propPosition]);
+
   return (
     <div>
       <div className="bg-black border-2 border-red-600 w-[65vw] h-[584px] relative overflow-hidden">
@@ -77,7 +110,7 @@ const Videofeed = ({ position }) => {
         <div className="absolute bottom-2 right-2 w-48 h-32 bg-white rounded-md overflow-hidden shadow-md border border-white z-10">
           <MapContainer
             center={position}
-            zoom={100}
+            zoom={16}
             scrollWheelZoom={true}
             dragging={true}
             doubleClickZoom={false}
